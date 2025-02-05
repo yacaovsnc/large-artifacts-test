@@ -1,0 +1,26 @@
+name: large-artifacts
+
+on:
+  schedule:
+    - cron: '23 * * * *'
+  workflow_dispatch:
+
+jobs:
+  upload-artifacts:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    name: artifact upload on ${{ matrix.os }}
+    steps:
+        - shell: bash
+          run: |
+            mkdir artifact-path
+            head -c 1G /dev/urandom > artifact-path/random_bytes
+        - uses: actions/upload-artifact@v4
+          with:
+            name: my-artifact-${{ matrix.os }}
+            path: artifact-path/*
+            retention-days: 1
+          env:
+            ACTIONS_ARTIFACT_UPLOAD_CONCURRENCY: 5
