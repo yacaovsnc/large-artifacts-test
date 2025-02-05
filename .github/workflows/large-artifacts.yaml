@@ -16,7 +16,7 @@ jobs:
         - shell: bash
           run: |
             mkdir artifact-path
-            head -c 1G /dev/urandom > artifact-path/random_bytes
+            head -c 1073741824 /dev/urandom > artifact-path/random_bytes
         - uses: actions/upload-artifact@v4
           with:
             name: my-artifact-${{ matrix.os }}
