@@ -10,7 +10,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest, macos-15-large]
+        os: [ubuntu-latest, windows-latest, macos-latest, macos-13]
     name: artifact upload on ${{ matrix.os }}
     steps:
         - shell: bash
