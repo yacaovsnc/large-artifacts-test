@@ -20,6 +20,15 @@ jobs:
             head -c 357914624 /dev/urandom > artifact-path/random_bytes_2
             head -c 357914624 /dev/urandom > artifact-path/random_bytes_3
         - uses: actions/upload-artifact@v4
+          name: Upload with concurrency of 1
+          with:
+            name: my-artifact-${{ matrix.os }}
+            path: artifact-path/*
+            retention-days: 1
+          env:
+            ACTIONS_ARTIFACT_UPLOAD_CONCURRENCY: 1
+        - uses: actions/upload-artifact@v4
+          name: Upload with concurrency of 5
           with:
             name: my-artifact-${{ matrix.os }}
             path: artifact-path/*
@@ -27,6 +36,7 @@ jobs:
           env:
             ACTIONS_ARTIFACT_UPLOAD_CONCURRENCY: 5
         - uses: actions/upload-artifact@v4
+          name: Upload with default concurrency
           with:
             name: my-artifact-${{ matrix.os }}-default-concurrency
             path: artifact-path/*
