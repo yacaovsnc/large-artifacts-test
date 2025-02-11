@@ -22,7 +22,7 @@ jobs:
         - uses: actions/upload-artifact@v4
           name: Upload with concurrency of 1
           with:
-            name: my-artifact-${{ matrix.os }}
+            name: my-artifact-${{ matrix.os }}-concurrency_1
             path: artifact-path/*
             retention-days: 1
           env:
@@ -30,7 +30,7 @@ jobs:
         - uses: actions/upload-artifact@v4
           name: Upload with concurrency of 5
           with:
-            name: my-artifact-${{ matrix.os }}
+            name: my-artifact-${{ matrix.os }}-concurrency_5
             path: artifact-path/*
             retention-days: 1
           env:
@@ -38,6 +38,6 @@ jobs:
         - uses: actions/upload-artifact@v4
           name: Upload with default concurrency
           with:
-            name: my-artifact-${{ matrix.os }}-default-concurrency
+            name: my-artifact-${{ matrix.os }}-default_concurrency
             path: artifact-path/*
             retention-days: 1
