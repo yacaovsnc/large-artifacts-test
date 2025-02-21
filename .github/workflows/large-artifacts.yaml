@@ -27,7 +27,7 @@ jobs:
         #     retention-days: 1
         #   env:
         #     ACTIONS_ARTIFACT_UPLOAD_CONCURRENCY: 1
-        - uses: actions/upload-artifact@v4
+        - uses: actions/upload-artifact@yacaovsnc/artifact_2.2.2
           name: Upload with concurrency of 5
           with:
             name: my-artifact-${{ matrix.os }}-concurrency_5
